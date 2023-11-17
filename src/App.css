@@ -26,6 +26,8 @@
 }
 .img {
   width: 100%;
+  aspect-ratio: 16/9;
+  border-radius: 7px;
 }
 
 .hero_header {
@@ -72,6 +74,33 @@
   margin-inline: auto;
   width: 70%;
 }
+
+.form_container {
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  place-items: center;
+  border: solid gray 2px;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  padding: 2em;
+}
+input {
+  height: 4em;
+  min-width: 400px;
+  padding: 2em;
+}
+
+.btn {
+  width: 5em;
+  height: 3em;
+  list-style: none;
+}
+
 @media (max-width: 600px) {
   .hero_header {
     flex-direction: column;
