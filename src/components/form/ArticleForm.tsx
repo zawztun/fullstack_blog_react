@@ -1,34 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import AdminLayout from "../Layout";
-import { useParams } from "react-router-dom";
 
-import "./Form.css";
-
-// type form = {
-//   title: string;
-//   description: string;
-//   body: string;
-//   photoUrl: string;
-// };
-
-export default function EditForm() {
+export default function ArticleForm() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [body, setBody] = useState("");
   const [photoUrl, setPhotoUrl] = useState("");
-
-  const { id } = useParams();
-
-  useEffect(() => {
-    fetch(`http://localhost:8080/api/post/${id}`)
-      .then((res) => res.json())
-      .then((res) => {
-        setBody(res.body);
-        setTitle(res.title);
-        setDescription(res.description);
-        setPhotoUrl(res.photoUrl);
-      });
-  }, []);
 
   const inputHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -40,8 +17,8 @@ export default function EditForm() {
       body: body,
     };
 
-    await fetch(`http://localhost:8080/api/post/${id}`, {
-      method: "PUT",
+    await fetch("http://localhost:8080/api/post", {
+      method: "POST",
       mode: "cors",
       headers: {
         "Content-Type": "application/json",
@@ -70,7 +47,7 @@ export default function EditForm() {
                 }}
               />
             </div>
-            <div className="form_field">
+            <div>
               <input
                 type="text"
                 placeholder="Enter Your Description"
@@ -80,9 +57,10 @@ export default function EditForm() {
                 }}
               />
             </div>
-            <div className="form_field">
-              <input
-                type="text"
+            <div>
+              <textarea
+                rows={4}
+                cols={40}
                 placeholder="Enter Your post "
                 value={body}
                 onChange={(e) => {
@@ -90,7 +68,7 @@ export default function EditForm() {
                 }}
               />
             </div>
-            <div className="form_field">
+            <div>
               <input
                 type="text"
                 placeholder="Enter Your photoUrl "

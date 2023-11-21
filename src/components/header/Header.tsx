@@ -1,4 +1,3 @@
-import React from "react";
 import "./Header.css";
 import { Link } from "react-router-dom";
 
@@ -11,7 +10,10 @@ function Header() {
         </Link>
         <div>
           <ul className="header_items">
-            <Link to="/form">Form</Link>
+            <Link to="/userform">User Form</Link>
+            <Link to="/userlist">User List</Link>
+            <Link to="/articlelist">Article List</Link>
+            <Link to="/articleForm">Article Form</Link>
             <Link to="/login">Login</Link>
             <Link to="/logout">Logout</Link>
           </ul>

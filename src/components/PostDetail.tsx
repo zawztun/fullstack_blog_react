@@ -14,10 +14,6 @@ type Post = {
 };
 
 function PostDetail() {
-  // const params = useParams();
-  // const url = "/posts/" + params.id;
-  // console.log(url);
-
   const [detailPost, setDetailPost] = useState<Post>();
 
   const { id } = useParams();

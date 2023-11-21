@@ -5,10 +5,12 @@ import App from "./App.tsx";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import PostDetail from "./components/PostDetail.tsx";
-import Form from "./components/form/Form.tsx";
-import Header from "./components/header/Header.tsx";
-import ArticleList from "./components/list/ArticleList.tsx";
-import EditForm from "./components/form/EditForm.tsx";
+import ArticleList from "./components/articleList/ArticleList.tsx";
+import UserForm from "./components/form/UserForm.tsx";
+import UserList from "./components/userList/UserList.tsx";
+import ArticleEditForm from "./components/form/ArticleEditForm.tsx";
+import UserEditForm from "./components/form/UserEditForm.tsx";
+import ArticleForm from "./components/form/ArticleForm.tsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -20,16 +22,30 @@ const router = createBrowserRouter([
   },
 
   {
-    path: "/form",
-    element: <Form />,
+    path: "/articleform",
+    element: <ArticleForm />,
   },
   {
-    path: "/editform/:id",
-    element: <EditForm />,
+    path: "/userform",
+    element: <UserForm />,
+  },
+
+  {
+    path: "/articleeditform/:id",
+    element: <ArticleEditForm />,
   },
   {
-    path: "/list",
+    path: "/usereditform/:id",
+    element: <UserEditForm />,
+  },
+
+  {
+    path: "/articlelist",
     element: <ArticleList />,
+  },
+  {
+    path: "/userlist",
+    element: <UserList />,
   },
 ]);
 

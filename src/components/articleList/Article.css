@@ -1,17 +1,3 @@
-.table_container {
-  display: flex;
-  justify-content: center;
-}
-table {
-  width: 70%;
-}
-
-table,
-th,
-td {
-  border: 1px solid;
-  padding: 1em;
-}
 .btn {
   width: 50%;
   display: flex;
@@ -35,4 +21,10 @@ button {
 
 .delete_btn {
   background-color: red;
+}
+
+@media (max-width: 600px) {
+  .btn {
+    width: 100%;
+  }
 }

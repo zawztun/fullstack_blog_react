@@ -1,19 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AdminLayout from "../Layout";
-import "./Form.css";
+import { useParams } from "react-router-dom";
 
-// type form = {
-//   title: string;
-//   description: string;
-//   body: string;
-//   photoUrl: string;
-// };
-
-export default function Form() {
+export default function EditForm() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [body, setBody] = useState("");
   const [photoUrl, setPhotoUrl] = useState("");
+
+  const { id } = useParams();
+
+  useEffect(() => {
+    fetch(`http://localhost:8080/api/post/${id}`)
+      .then((res) => res.json())
+      .then((res) => {
+        setBody(res.body);
+        setTitle(res.title);
+        setDescription(res.description);
+        setPhotoUrl(res.photoUrl);
+      });
+  }, []);
 
   const inputHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -25,8 +31,8 @@ export default function Form() {
       body: body,
     };
 
-    await fetch("http://localhost:8080/api/post", {
-      method: "POST",
+    await fetch(`http://localhost:8080/api/post/${id}`, {
+      method: "PUT",
       mode: "cors",
       headers: {
         "Content-Type": "application/json",
@@ -65,9 +71,10 @@ export default function Form() {
                 }}
               />
             </div>
-            <div className="form_field">
-              <input
-                type="text"
+            <div>
+              <textarea
+                rows={4}
+                cols={40}
                 placeholder="Enter Your post "
                 value={body}
                 onChange={(e) => {

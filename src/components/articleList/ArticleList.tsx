@@ -10,7 +10,7 @@ type Article = {
 };
 
 const ArticleList = () => {
-  const [article, setArticle] = useState<Article[] | null>(null);
+  const [article, setArticle] = useState<Article[] | null>();
 
   function fetchData() {
     fetch("http://localhost:8080/api/post")
@@ -36,31 +36,32 @@ const ArticleList = () => {
     <AdminLayout>
       <div className="container">
         <div className="table_container">
-          <table className="table_fields">
+          <table>
             <tr>
               <th>ID</th>
               <th>Title</th>
               <th>Description</th>
+              <th></th>
             </tr>
             {article?.map((list) => (
               <tr key={list.id}>
                 <td>{list.id}</td>
                 <td>{list.title}</td>
                 <td>{list.description}</td>
-                <div className="btn">
-                  <button>
-                    <Link to={"/editform/" + list.id} className="edit_btn">
-                      Edit
-                    </Link>
-                  </button>
+                <td>
+                  <div className="form_btn">
+                    <button>
+                      <Link to={"/articleeditform/" + list.id}>Edit</Link>
+                    </button>
 
-                  <button
-                    className="delete_btn"
-                    onClick={() => deletePost(list.id)}
-                  >
-                    Delete
-                  </button>
-                </div>
+                    <button
+                      className="delete_btn"
+                      onClick={() => deletePost(list.id)}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </td>
               </tr>
             ))}
           </table>
